@@ -128,21 +128,33 @@ public class Ch3Ex2Activity extends AppCompatActivity {
 
         // 在这里实现了一个 ObjectAnimator，对 target 控件的背景色进行修改
         // 可以思考下，这里为什么要使用 ofArgb，而不是 ofInt 呢？
-        ObjectAnimator animator1 = ObjectAnimator.ofArgb(target,
+        ObjectAnimator iro = ObjectAnimator.ofArgb(target,
                 "backgroundColor",
                 getBackgroundColor(startColorPicker),
                 getBackgroundColor(endColorPicker));
-        animator1.setDuration(Integer.parseInt(durationSelector.getText().toString()));
-        animator1.setRepeatCount(ObjectAnimator.INFINITE);
-        animator1.setRepeatMode(ObjectAnimator.REVERSE);
+        iro.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+        iro.setRepeatCount(ObjectAnimator.INFINITE);
+        iro.setRepeatMode(ObjectAnimator.REVERSE);
 
         // TODO ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
+        ObjectAnimator hirosa = ObjectAnimator.ofFloat(target, "ScaleX", 2.0f, 1.0f);
+        hirosa.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+        hirosa.setRepeatCount(ObjectAnimator.INFINITE);
+        hirosa.setRepeatMode(ObjectAnimator.REVERSE);
+        ObjectAnimator takasa = ObjectAnimator.ofFloat(target, "ScaleY", 2.0f, 1.0f);
+        takasa.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+        takasa.setRepeatCount(ObjectAnimator.INFINITE);
+        takasa.setRepeatMode(ObjectAnimator.REVERSE);
 
         // TODO ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
+        ObjectAnimator toumei = ObjectAnimator.ofFloat(target,"alpha",1.0f, 0.5f);
+        toumei.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+        toumei.setRepeatCount(ObjectAnimator.INFINITE);
+        toumei.setRepeatMode(ObjectAnimator.REVERSE);
 
         // TODO ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
         animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animator1);
+        animatorSet.playTogether(iro, hirosa, takasa, toumei);
         animatorSet.start();
     }
 }

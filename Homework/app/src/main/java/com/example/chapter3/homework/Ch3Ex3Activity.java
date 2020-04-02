@@ -1,5 +1,10 @@
 package com.example.chapter3.homework;
 
+import android.graphics.Color;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,12 +21,28 @@ public class Ch3Ex3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ch3ex3);
 
-
-
         // TODO: ex3-1. 添加 ViewPager 和 Fragment 做可滑动界面
-
-
-
         // TODO: ex3-2, 添加 TabLayout 支持 Tab
+        ViewPager page = findViewById(R.id.ViewPager);
+        TabLayout tLayout = findViewById(R.id.TabLayout);
+        page.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int i) {
+                return new PlaceholderFragment();
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                if (position == 1) return "My Friend";
+                else return "Friend List";
+            }
+        });
+
+        tLayout.setupWithViewPager(page);
     }
 }
